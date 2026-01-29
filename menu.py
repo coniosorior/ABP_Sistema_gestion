@@ -240,7 +240,7 @@ def movimientos_stock(productos):
         # Entrada
         if opcion == "1":
             producto_encontrado["stock"] += cantidad
-            print("✅ Entrada registrada.")
+            print("Entrada registrada.")
             print(f"Stock actualizado: {producto_encontrado['stock']}")
 
         # Salida
@@ -295,7 +295,7 @@ def main():
         elif opcion == 3:
             consultar_stock(productos)
         elif opcion == 4:
-            print("Elegiste: Movimientos de stock (pendiente)")
+            movimientos_stock(productos)
         elif opcion == 5:
             print("Saliendo del sistema... ¡Hasta luego!")
             break
