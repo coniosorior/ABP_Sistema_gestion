@@ -29,7 +29,6 @@ def login(usuarios):
         print("Usuario o contraseña incorrectos. Intenta nuevamente.")
 
 
-
 def mostrar_menu():
     print("\n===== TIENDA DE ALIMENTO PARA MASCOTAS =====")
     print("1) Agregar producto")
@@ -238,7 +237,6 @@ def movimientos_stock(productos):
             print("Opción inválida. Intenta nuevamente.")
             continue
 
-        # Pedir ID del producto
         id_str = input("Ingresa el ID del producto: ").strip()
         try:
             id_producto = int(id_str)
@@ -246,7 +244,6 @@ def movimientos_stock(productos):
             print("ID inválido. Debe ser un número entero.")
             continue
 
-        # Buscar producto
         producto_encontrado = None
         for producto in productos:
             if producto["id"] == id_producto:
@@ -257,7 +254,6 @@ def movimientos_stock(productos):
             print("No se encontró un producto activo con ese ID.")
             continue
 
-        # Pedir cantidad
         cantidad_str = input("Ingresa la cantidad (entero > 0): ").strip()
         try:
             cantidad = int(cantidad_str)
@@ -269,13 +265,11 @@ def movimientos_stock(productos):
             print("Cantidad inválida. Debe ser mayor que 0.")
             continue
 
-        # Entrada
         if opcion == "1":
             producto_encontrado["stock"] += cantidad
             print("Entrada registrada.")
             print(f"Stock actualizado: {producto_encontrado['stock']}")
 
-        # Salida
         elif opcion == "2":
             if producto_encontrado["stock"] < cantidad:
                 print("Stock insuficiente. No se puede realizar la salida.")
@@ -302,6 +296,18 @@ def pedir_opcion_menu():
         else:
             print("Opción inválida. Debes escoger un número del 1 al 5. Intenta nuevamente.")
 
+def tiene_permiso(rol, opcion_menu):
+    if rol == "Admin":
+        return True
+
+    if rol == "Usuario":
+        return opcion_menu in (1, 2, 3, 4)
+
+    if rol == "Invitado":
+        return opcion_menu in (2, 3)
+
+    return False
+
 
 def main():
     productos = [
@@ -322,6 +328,10 @@ def main():
     while True:
         mostrar_menu()
         opcion = pedir_opcion_menu()
+
+        if not tiene_permiso(rol_actual, opcion):
+            print("Acceso denegado: tu rol no tiene permiso para esa opción.")
+            continue
 
         if opcion == 1:
             agregar_producto(productos, ids_usados)
