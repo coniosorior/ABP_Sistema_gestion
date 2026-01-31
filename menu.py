@@ -332,7 +332,7 @@ def main():
         if not tiene_permiso(rol_actual, opcion):
             print("Acceso denegado: tu rol no tiene permiso para esa opción.")
             continue
-
+        
         if opcion == 1:
             agregar_producto(productos, ids_usados)
         elif opcion == 2:
