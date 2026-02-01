@@ -14,6 +14,7 @@ for u in usuarios:
     else:
         mails_unicos.add(mail)
 
+
 def login(usuarios):
     print("\n===== LOGIN =====")
 
@@ -36,6 +37,7 @@ def mostrar_menu():
     print("3) Buscar / Consultar stock")
     print("4) Movimientos de stock")
     print("5) Salir")
+
 
 def listar_productos(productos, eliminados, rol):
     while True:
@@ -74,7 +76,7 @@ def listar_productos(productos, eliminados, rol):
 
         if opcion == "1":
             if rol != "Admin":
-                print("Acceso denegado: solo Admin puede eliminar productos.")
+                print("Tu rol no tiene permiso para eliminar productos.")
                 continue
 
             if not productos:
@@ -88,6 +90,7 @@ def listar_productos(productos, eliminados, rol):
         else:
             print("Opción inválida. Intenta nuevamente.")
 
+
 def eliminar_producto(productos, eliminados):
     id_str = input("Ingresa el ID del producto a eliminar: ").strip()
     try:
@@ -98,17 +101,17 @@ def eliminar_producto(productos, eliminados):
 
     for i, producto in enumerate(productos):
         if producto["id"] == id_eliminar:
-            producto_eliminado = productos.pop(i)     
-            eliminados.append(producto_eliminado)     
+            producto_eliminado = productos.pop(i)
+            eliminados.append(producto_eliminado)
             print("Producto eliminado.")
             return
 
     print("No se encontró un producto con ese ID.")
 
+
 def agregar_producto(productos, ids_usados):
     print("\n--- Agregar producto ---")
 
-    
     while True:
         id_str = input("ID: ").strip()
         try:
@@ -125,8 +128,8 @@ def agregar_producto(productos, ids_usados):
             print("Ese ID ya existe. Ingresa otro.")
             continue
 
-        break  
-  
+        break
+
     while True:
         nombre = input("Nombre del producto: ").strip()
         if nombre == "":
@@ -174,7 +177,7 @@ def agregar_producto(productos, ids_usados):
         "nombre": nombre,
         "precio": precio,
         "stock": stock,
-        "tipo_mascota": tipo_mascota
+        "tipo_mascota": tipo_mascota,
     }
 
     productos.append(nuevo_producto)
@@ -182,12 +185,13 @@ def agregar_producto(productos, ids_usados):
 
     print("\nProducto agregado correctamente:")
     print(
-    f"ID: {nuevo_producto['id']} | "
-    f"Nombre: {nuevo_producto['nombre']} | "
-    f"Precio: ${nuevo_producto['precio']} | "
-    f"Stock: {nuevo_producto['stock']} | "
-    f"Mascota: {nuevo_producto['tipo_mascota']}"
-)
+        f"ID: {nuevo_producto['id']} | "
+        f"Nombre: {nuevo_producto['nombre']} | "
+        f"Precio: ${nuevo_producto['precio']} | "
+        f"Stock: {nuevo_producto['stock']} | "
+        f"Mascota: {nuevo_producto['tipo_mascota']}"
+    )
+
 
 def consultar_stock(productos):
     while True:
@@ -226,6 +230,7 @@ def consultar_stock(productos):
 
         if not encontrado:
             print("No se encontró un producto activo con ese ID.")
+
 
 def movimientos_stock(productos):
     while True:
@@ -301,21 +306,18 @@ def pedir_opcion_menu():
         else:
             print("Opción inválida. Debes escoger un número del 1 al 5. Intenta nuevamente.")
 
-def tiene_permiso(rol, opcion_menu):
 
+def tiene_permiso(rol, opcion_menu):
     if opcion_menu == 5:
         return True
-
     if rol == "Admin":
         return True
-
     if rol == "Usuario":
         return opcion_menu in (1, 2, 3, 4)
-
     if rol == "Invitado":
         return opcion_menu == 3
-
     return False
+
 
 def main():
     productos = [
@@ -327,7 +329,6 @@ def main():
     ]
 
     eliminados = []
-
     ids_usados = {p["id"] for p in productos}
 
     usuario_actual = login(usuarios)
@@ -340,6 +341,7 @@ def main():
         if not tiene_permiso(rol_actual, opcion):
             print("Acceso denegado: tu rol no tiene permiso para esa opción.")
             continue
+
         if opcion == 1:
             agregar_producto(productos, ids_usados)
         elif opcion == 2:
