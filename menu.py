@@ -99,12 +99,13 @@ def eliminar_producto(productos, eliminados):
         print("ID inválido. Debe ser un número entero.")
         return
 
-    for i, producto in enumerate(productos):
+    for producto in productos:
         if producto["id"] == id_eliminar:
-            producto_eliminado = productos.pop(i)
-            eliminados.append(producto_eliminado)
+            productos.remove(producto)        
+            eliminados.append(producto)       
             print("Producto eliminado.")
             return
+
 
     print("No se encontró un producto con ese ID.")
 
@@ -306,17 +307,22 @@ def pedir_opcion_menu():
         else:
             print("Opción inválida. Debes escoger un número del 1 al 5. Intenta nuevamente.")
 
-
 def tiene_permiso(rol, opcion_menu):
+
     if opcion_menu == 5:
         return True
+
     if rol == "Admin":
-        return True
+        return True  
+
     if rol == "Usuario":
-        return opcion_menu in (1, 2, 3, 4)
+        return opcion_menu in (2, 3, 4)  
+
     if rol == "Invitado":
-        return opcion_menu == 3
+        return opcion_menu == 3  
+
     return False
+
 
 
 def main():
