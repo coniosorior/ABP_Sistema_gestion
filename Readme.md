@@ -97,14 +97,12 @@ El proyecto está organizado en módulos para mejorar la claridad, reutilizació
 El desarrollo del sistema se realizó siguiendo una secuencia lógica:
 
 1. Se muestra sistema en donde se indetifica el menu principal del Sistema de gestion y funcionalidades necesarias.
-2. Se identifica el archivo funciones que contiene las funciones principales del sistema, encargadas de realizar las operaciones como agregar productos, listar información, consultar stock y gestionar movimientos.
-3. Implementación de la lógica principal del sistema.
+2. Implementación de la lógica principal del sistema.
+3. Se crea el archivo funciones que contiene las funciones principales del sistema, encargadas de realizar las operaciones como agregar productos, listar información, consultar stock y gestionar movimientos.
 4. Separación del código en módulos para reducir duplicación.
 5. Aplicación de validaciones para evitar erroes en el uso del sistema de gestión.
 6. Implementación de control de acceso mediante roles.
-
-Este enfoque permitió construir un sistema funcional, ordenado y fácil de manejar.
-
+7. Dentro de la carpeta de **Abp3** se incluyen imagenes para la demostración y validación del desarrollo del Sistema de gestión para mascotas.
 
 ---
 
