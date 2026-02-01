@@ -115,7 +115,7 @@ El sistema está enfocado para la gestión básica de productos y stock para una
 
 Para ejecutar correctamente el sistema de gestión, siga los pasos a continuación:
 
-1. Clonar el repositorio desde GitHub utilizando el siguiente enlace:  
+1. Una vez clonado el repositorio desde GitHub utilizando el enlace:  
    https://github.com/coniosorior/ABP_Sistema_gestion.git
 
 2. Acceder a Python y abrir la carpeta del proyecto denominada **Abp3**.
