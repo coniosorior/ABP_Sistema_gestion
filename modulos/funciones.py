@@ -79,7 +79,7 @@ def listar_productos(productos, eliminados, rol):
         opcion = pedir_opcion("Elige una opción (1-2): ", {1, 2})
 
         if opcion == 1:
-            if rol != "Admin":
+            if rol not in ("Admin", "Usuario"):
                 print("Tu rol no tiene permiso para eliminar productos.")
                 continue
 
@@ -88,7 +88,7 @@ def listar_productos(productos, eliminados, rol):
             else:
                 eliminar_producto(productos, eliminados)
 
-        else:  # opcion == 2
+        else:  
             break
 
 
@@ -97,8 +97,8 @@ def eliminar_producto(productos, eliminados):
 
     for producto in productos:
         if producto["id"] == id_eliminar:
-            productos.remove(producto)      # .remove()
-            eliminados.append(producto)     # .append()
+            productos.remove(producto)     
+            eliminados.append(producto)     
             print("Producto eliminado.")
             return
 
