@@ -4,19 +4,10 @@ from modulos.funciones import (login, mostrar_menu, pedir_opcion_menu, tiene_per
 ROLES = ("Admin", "Usuario", "Invitado")
 
 usuarios = [
-    {"user": "admin", "pass": "1234", "rol": "Admin", "mail": "admin@tienda.cl"},
-    {"user": "usuario", "pass": "1234", "rol": "Usuario", "mail": "usuario@tienda.cl"},
-    {"user": "invitado", "pass": "1234", "rol": "Invitado", "mail": "invitado@tienda.cl"},
+    {"user": "admin", "pass": "1234", "rol": "Admin"},
+    {"user": "usuario", "pass": "1234", "rol": "Usuario"},
+    {"user": "invitado", "pass": "1234", "rol": "Invitado"},
 ]
-
-mails_unicos = set()
-for u in usuarios:
-    mail = u.get("mail")
-    if mail in mails_unicos:
-        print(f"Mail duplicado detectado: {mail}")
-    else:
-        mails_unicos.add(mail)
-
 
 def main():
     productos = [
