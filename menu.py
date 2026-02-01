@@ -2,8 +2,8 @@ ROLES = ("Admin", "Usuario", "Invitado")
 
 usuarios = [
     {"user": "admin", "pass": "1234", "rol": "Admin", "mail": "admin@tienda.cl"},
-    {"user": "usuario", "pass": "5678", "rol": "Usuario", "mail": "usuario@tienda.cl"},
-    {"user": "invitado", "pass": "9123", "rol": "Invitado", "mail": "invitado@tienda.cl"},
+    {"user": "usuario", "pass": "1234", "rol": "Usuario", "mail": "usuario@tienda.cl"},
+    {"user": "invitado", "pass": "1234", "rol": "Invitado", "mail": "invitado@tienda.cl"},
 ]
 
 mails_unicos = set()
@@ -37,8 +37,7 @@ def mostrar_menu():
     print("4) Movimientos de stock")
     print("5) Salir")
 
-
-def listar_productos(productos, eliminados):
+def listar_productos(productos, eliminados, rol):
     while True:
         print("\n--- Lista de productos ---")
 
@@ -74,12 +73,18 @@ def listar_productos(productos, eliminados):
         opcion = input("Elige una opción (1-2): ").strip()
 
         if opcion == "1":
+            if rol != "Admin":
+                print("Acceso denegado: solo Admin puede eliminar productos.")
+                continue
+
             if not productos:
                 print("No hay productos para eliminar.")
             else:
                 eliminar_producto(productos, eliminados)
+
         elif opcion == "2":
             break
+
         else:
             print("Opción inválida. Intenta nuevamente.")
 
@@ -297,6 +302,10 @@ def pedir_opcion_menu():
             print("Opción inválida. Debes escoger un número del 1 al 5. Intenta nuevamente.")
 
 def tiene_permiso(rol, opcion_menu):
+
+    if opcion_menu == 5:
+        return True
+
     if rol == "Admin":
         return True
 
@@ -304,10 +313,9 @@ def tiene_permiso(rol, opcion_menu):
         return opcion_menu in (1, 2, 3, 4)
 
     if rol == "Invitado":
-        return opcion_menu in (2, 3)
+        return opcion_menu == 3
 
     return False
-
 
 def main():
     productos = [
@@ -332,11 +340,10 @@ def main():
         if not tiene_permiso(rol_actual, opcion):
             print("Acceso denegado: tu rol no tiene permiso para esa opción.")
             continue
-        
         if opcion == 1:
             agregar_producto(productos, ids_usados)
         elif opcion == 2:
-            listar_productos(productos, eliminados)
+            listar_productos(productos, eliminados, rol_actual)
         elif opcion == 3:
             consultar_stock(productos)
         elif opcion == 4:
