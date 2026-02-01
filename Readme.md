@@ -143,7 +143,3 @@ __Invitado__
 Usuario: invitado
 Contraseña: 1234
 
-
-## 11. Otros
-
-1. Dentro de la carpeta de **Abp3** se incluyen imagenes para la demostración y validación del desarrollo del Sistema de gestión para mascotas.
