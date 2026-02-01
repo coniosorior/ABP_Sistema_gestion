@@ -1,5 +1,4 @@
-from validaciones import pedir_int, pedir_texto_no_vacio, pedir_opcion
-
+from modulos.validaciones import pedir_int, pedir_texto_no_vacio, pedir_opcion
 
 def login(usuarios):
     print("\n===== LOGIN =====")
